@@ -1,0 +1,89 @@
+ package Main;
+
+import java.util.Scanner;
+import Logica.Logica;
+
+public class Main {
+
+    public static void main(String[] args) {
+        
+        Scanner V = new Scanner(System.in);
+        String Nombre[] = {
+            "YEIZER CRUZ ESPARZA ZAMORA",
+            "JULIAN TATACOYA",
+            "LILIA SUTSUY MELGOZA VAZQUEZ",
+            "JUAN PABLO CAMPOS CASASANERO",
+            "MARIANA DAZZLING DIAZ DE JESUS",
+            "ALEXIS EFREN DIAZ ROSAS",
+            "JENNIFER IRLANDA DOMINGUEZ CAZALES",
+            "MONSERRAT ELIGIO RAMOS",
+            "LILIANA FLORES MALDONADO",
+            "EDGAR OMAR GOMEZ ARAGON",
+            "SAMARA GUTIERREZ VALLE",
+            "ALEXIS MANUEL JUAREZ RAMOS",
+            "ROGELIO JESUS LEYVA SILVA",
+            "ISABEL MARTINEZ DE LOS SANTOS",
+            "IRIS MADAI MARTINEZ RAYO",
+            "VICENTE ANGEL MELENDEZ MENDOZA"
+        };
+        int NoControl[] = {
+            19680277,
+            19680262,
+            19680193,
+            19680113,
+            19680133,
+            17680136,
+            18680108,
+            19680957,
+            19680144,
+            19680156,
+            19680162,
+            19680958,
+            19680177,
+            18680163,
+            18680165,
+            18680172
+        };
+        double Calificacion[] = new double[Nombre.length];
+        //// Lectura de datos ////
+        for (int i = 0; i < Calificacion.length; i++) {
+            do {
+                System.out.print("[" + (i + 1) + "] Numero de control: " + NoControl[i]
+                        + "\nAlumno: " + Nombre[i] + "\nCalificacion: ");
+                Calificacion[i] = V.nextDouble();
+                System.out.println("");
+            } while (Calificacion[i] < 0 || Calificacion[i] > 100);
+        }
+        Logica metodo = new Logica();
+        
+        int op, op2;
+        do {
+            op2 = 1;
+            System.out.println("Usuario: Usuario invitado"
+                    + "\n¿Que desea hacer?"
+                    + "\n[1]Promedio general"
+                    + "\n[2]Promedio de los primeros 5 datos"
+                    + "\n[3]Promedio de los ultimos 5 datos"
+                    + "\n[4]salir");
+            op = V.nextInt();
+            switch (op) {
+                case 1:
+                    System.out.println("Calificacion grupal: " + metodo.Promedio(Calificacion));
+                    break;
+                case 2:
+                    metodo.Primero(Nombre, NoControl, Calificacion);
+                    break;
+                case 3:
+                    metodo.Ultimos(Nombre, NoControl, Calificacion);
+                case 4:
+                    System.out.println("Saliendo");
+                    break;
+            }
+            if (op != 4) {
+                System.out.println("Desea continuar [0]si/[1]no");
+                op2 = V.nextInt();
+            }
+        } while (op2 != 1);
+
+    }
+}
